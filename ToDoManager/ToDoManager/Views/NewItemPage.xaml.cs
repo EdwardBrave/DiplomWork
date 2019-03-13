@@ -13,14 +13,18 @@ namespace ToDoManager.Views
     {
         public Item Item { get; set; }
 
+        public DateTime Date { get; set; }
+
+        public TimeSpan Time { get; set; }
+
         public NewItemPage()
         {
             InitializeComponent();
-
+            Date = new DateTime();
+            Time = new TimeSpan();
             Item = new Item
             {
-                Text = "Item name",
-                Description = "This is an item description."
+                Label = "New task"
             };
 
             BindingContext = this;

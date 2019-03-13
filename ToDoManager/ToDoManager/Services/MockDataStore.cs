@@ -1,4 +1,5 @@
 ﻿using System;
+using SQLite;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,57 +11,78 @@ namespace ToDoManager.Services
     {
         List<Item> items;
 
+        private SQLiteAsyncConnection dataBase;
+
         public MockDataStore()
         {
             items = new List<Item>();
-            var mockItems = new List<Item>
-            {
-                new Item { Id = Guid.NewGuid().ToString(), Text = "First item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Second item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Third item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fourth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Fifth item", Description="This is an item description." },
-                new Item { Id = Guid.NewGuid().ToString(), Text = "Sixth item", Description="This is an item description." },
-            };
+            string dbPath = System.IO.Path.Combine(
+               Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
+               "ToDoData.db3");
 
-            foreach (var item in mockItems)
+            dataBase = new SQLiteAsyncConnection(dbPath);
+            dataBase.CreateTableAsync<Item>();
+            RefreshCategory();
+        
+        }
+
+        private async void RefreshCategory()
+        {
+            await dataBase.CreateTableAsync<Category>();
+            if (await dataBase.Table<Category>().CountAsync() <= 0)
             {
-                items.Add(item);
+                await dataBase.InsertAllAsync(new List<Category>() {
+                    new Category() { Name = "Sport", Section = "Health" },
+                    new Category() { Name = "Food", Section = "Health" },
+                    new Category() { Name = "Dream", Section = "Health" },
+
+                    new Category() { Name = "Passive", Section = "Relaxation" },
+                    new Category() { Name = "Hobby", Section = "Relaxation" },
+                    new Category() { Name = "Active", Section = "Relaxation" },
+
+                    new Category() { Name = "Study", Section = "Work" },
+                    new Category() { Name = "Job", Section = "Work" },
+                    new Category() { Name = "Business", Section = "Work" }
+                });
             }
         }
 
-        public async Task<bool> AddItemAsync(Item item)
+        ~MockDataStore()
         {
-            items.Add(item);
-
-            return await Task.FromResult(true);
+            if (dataBase != null)
+                dataBase.CloseAsync();
         }
 
-        public async Task<bool> UpdateItemAsync(Item item)
+        public async Task<int> AddItemAsync(Item item)
         {
-            var oldItem = items.Where((Item arg) => arg.Id == item.Id).FirstOrDefault();
-            items.Remove(oldItem);
-            items.Add(item);
-
-            return await Task.FromResult(true);
+            if (item.Id == null)
+            {
+                var itemsList = await dataBase.QueryAsync<Item>("SELECT * FROM Tasks ORDER BY Id DESC LIMIT 1");
+                item.Id = (itemsList.Count == 0) ? "1" : 
+                    (int.Parse(itemsList[0].Id, System.Globalization.NumberStyles.HexNumber) + 1).ToString();
+            }
+            return await dataBase.InsertAsync(item);
         }
 
-        public async Task<bool> DeleteItemAsync(string id)
+        public async Task<int> UpdateItemAsync(Item item)
         {
-            var oldItem = items.Where((Item arg) => arg.Id == id).FirstOrDefault();
-            items.Remove(oldItem);
+            await dataBase.DeleteAsync<Item>(item.Id);     
+            return await dataBase.InsertAsync(item);
+        }
 
-            return await Task.FromResult(true);
+        public async Task<int> DeleteItemAsync(string id)
+        {
+            return await dataBase.DeleteAsync<Item>(id);
         }
 
         public async Task<Item> GetItemAsync(string id)
         {
-            return await Task.FromResult(items.FirstOrDefault(s => s.Id == id));
+            return await dataBase.FindAsync<Item>(id);
         }
 
         public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
         {
-            return await Task.FromResult(items);
+            return await dataBase.QueryAsync<Item>("select * from Tasks");
         }
     }
 }

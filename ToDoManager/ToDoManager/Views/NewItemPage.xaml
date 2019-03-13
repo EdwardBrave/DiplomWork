@@ -23,10 +23,17 @@
     
     <ContentPage.Content>
         <StackLayout Spacing="20" Padding="15">
-            <Label Text="Text" FontSize="Medium" />
-            <Entry Text="{Binding Item.Text}" FontSize="Small" />
-            <Label Text="Description" FontSize="Medium" />
-            <Editor Text="{Binding Item.Description}" FontSize="Small" Margin="0" />
+            <Label Text="Task title" FontSize="Medium" />
+            <Entry Placeholder="New task" Text="{Binding Item.Label}" FontSize="Small" />
+            <Label Text="Category" FontSize="Medium" />
+            <Entry Text="{Binding Item.Category}" FontSize="Small" Margin="0" />
+            <Label Text="Importance" FontSize="Medium" />
+            <Slider Value="{Binding Item.Importance}"  Minimum="0" Maximum="10" Margin="0" />
+            <Label Text="Urgency" FontSize="Medium" />
+            <Slider Value="{Binding Item.Urgency}" Minimum="0" Maximum="10" Margin="0" />
+            <Label Text="Date and Time" FontSize="Medium" />
+            <DatePicker Date="{Binding DateTime}" FontSize="Micro" Margin="0" />
+            <TimePicker Time="{Binding Time}" FontSize="Micro" Margin="0" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
