@@ -84,5 +84,10 @@ namespace ToDoManager.Services
         {
             return await dataBase.QueryAsync<Item>("select * from Tasks");
         }
+
+        public async Task<IEnumerable<Category>> GetCateoriesAsync(bool forceRefresh = false)
+        {
+            return await dataBase.QueryAsync<Category>("select * from Categories");
+        }
     }
 }

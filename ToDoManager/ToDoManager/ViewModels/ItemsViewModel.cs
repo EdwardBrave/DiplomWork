@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 
 using ToDoManager.Models;
-using ToDoManager.Views;
 
 namespace ToDoManager.ViewModels
 {
@@ -21,12 +20,7 @@ namespace ToDoManager.ViewModels
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
-            {
-                var newItem = item as Item;
-                Items.Add(newItem);
-                await DataStore.AddItemAsync(newItem);
-            });
+            MessagingCenter.Subscribe<NewItemViewModel, Item>(this, "AddItem", (obj, item) => Items.Add(item));
         }
 
         async Task ExecuteLoadItemsCommand()
