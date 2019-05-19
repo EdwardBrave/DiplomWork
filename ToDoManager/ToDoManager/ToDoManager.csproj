@@ -11,16 +11,34 @@
 
   <ItemGroup>
     <None Remove="DefLangData.xml" />
+    <None Remove="Localization\langPack - Copy.en.xml" />
+    <None Remove="Localization\langPack-de.xml" />
+    <None Remove="Localization\langPack-en.xml" />
+    <None Remove="Localization\langPack-ru.xml" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="DefLangData.xml">
+    <EmbeddedResource Include="Localization\langPack-de.xml" />
+    <EmbeddedResource Include="Localization\langPack-en.xml" />
+    <EmbeddedResource Include="Localization\langPack-ru.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\langPack-ua.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="sqlite-net-pcl" Version="1.5.231" />
     <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />  
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Localization\langPack-de.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Localization\langPack-en.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
