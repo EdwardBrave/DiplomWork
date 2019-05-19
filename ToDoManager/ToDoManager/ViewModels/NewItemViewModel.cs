@@ -11,16 +11,7 @@ using ToDoManager.Views;
 namespace ToDoManager.ViewModels
 {
 
-    class EventCategoryArgs: EventArgs
-    {
-        public readonly IEnumerable<Category> categories;
-        public EventCategoryArgs(IEnumerable<Category> categories)
-        {
-            this.categories = categories;
-        }
-    }
-
-    class NewItemViewModel : BaseViewModel
+    public class NewItemViewModel : BaseViewModel
     {
         public Item Item { get; set; }
         public DateTime Date { get; set; }
@@ -29,13 +20,14 @@ namespace ToDoManager.ViewModels
         public ObservableCollection<Category> Categories{ get; set; }
         public Category SelectedCategory { get; set; }
 
-        //public event EventHandler<EventCategoryArgs> addCategory;
+        private bool isEditMode;
 
-        public NewItemViewModel()
+        public NewItemViewModel(Item currentItem = null)
         {
             Date = DateTime.Now;
             Time = new TimeSpan(Date.Hour, Date.Minute, Date.Second);
-            Item = new Item();
+            isEditMode = currentItem != null;
+            Item = currentItem ?? new Item();
             LoadCategories();
         }
 
@@ -54,6 +46,11 @@ namespace ToDoManager.ViewModels
                         Icon = item.Icon
                     };
                     Categories.Add(category);
+                    if (Item?.Category != null && Item.Category.IndexOf(category.Name) != -1)
+                    {
+                        SelectedCategory = category;
+                        MessagingCenter.Send(this, "RefreshCategory", category);
+                    }
                 }
             }
             Console.WriteLine();
@@ -62,7 +59,10 @@ namespace ToDoManager.ViewModels
         public async void SaveItem()
         {
             Item.Category = SelectedCategory.Name;
-            await DataStore.AddItemAsync(Item);
+            if (isEditMode)
+                await DataStore.UpdateItemAsync(Item);
+            else
+                await DataStore.AddItemAsync(Item);
             MessagingCenter.Send(this, "AddItem", Item);
         }
     }

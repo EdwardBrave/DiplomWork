@@ -5,6 +5,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using ToDoManager.ViewModels;
+using ToDoManager.Models;
 
 namespace ToDoManager.Views
 {
@@ -13,11 +14,18 @@ namespace ToDoManager.Views
     {
         NewItemViewModel viewModel;
 
-        public NewItemPage()
+        public NewItemPage(NewItemViewModel itemViewModel = null)
         {
             InitializeComponent();
 
-            BindingContext = this.viewModel = new NewItemViewModel();
+            BindingContext = this.viewModel = itemViewModel ?? new NewItemViewModel();
+
+            MessagingCenter.Subscribe<NewItemViewModel, Category>(this, "RefreshCategory", RefreshCategory);
+        }
+
+        void RefreshCategory(NewItemViewModel obj, Category category)
+        {
+            categoryPicker.SelectedItem = category;
         }
 
         void ImportanceSliderChanged(object sender, ValueChangedEventArgs e)

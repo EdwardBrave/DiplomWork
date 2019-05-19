@@ -18,6 +18,7 @@ namespace ToDoManager.Views
             InitializeComponent();
 
             BindingContext = this.viewModel = viewModel;
+            MessagingCenter.Subscribe<NewItemViewModel, Item>(this, "AddItem", RefreshPage);
         }
 
         public ItemDetailPage()
@@ -32,6 +33,20 @@ namespace ToDoManager.Views
 
             viewModel = new ItemDetailViewModel(item);
             BindingContext = viewModel;
+            MessagingCenter.Subscribe<NewItemViewModel, Item>(this, "AddItem", RefreshPage);
+        }
+
+        private void RefreshPage(NewItemViewModel obj, Item newItem)
+        {
+            newItem.Priority = (newItem.Importance + newItem.Urgency) / 2F;
+            viewModel.Item = newItem;
+            BindingContext = null;
+            BindingContext = viewModel;
+        }
+
+        private async void EditClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new NavigationPage(new NewItemPage(new NewItemViewModel(viewModel.Item))));
         }
     }
 }
