@@ -8,7 +8,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 using ToDoManager.Models;
-using ToDoManager.Views;
 using ToDoManager.ViewModels;
 
 namespace ToDoManager.Views
@@ -35,6 +34,15 @@ namespace ToDoManager.Views
 
             // Manually deselect item.
             ItemsListView.SelectedItem = null;
+        }
+
+        void OnItemTaskFinished(object sender, ToggledEventArgs e)
+        {
+            if (e.Value && sender is Switch switcher && switcher.BindingContext is Item item)
+            {
+                MessagingCenter.Send(this, "ItemTaskFinished", item);
+            }
+                
         }
 
         async void AddItem_Clicked(object sender, EventArgs e)

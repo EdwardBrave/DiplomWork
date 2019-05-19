@@ -2,10 +2,13 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-
+using System.Linq;
 using Xamarin.Forms;
 
 using ToDoManager.Models;
+using ToDoManager.Views;
+using System.Collections.Generic;
+using ToDoManager.Services;
 
 namespace ToDoManager.ViewModels
 {
@@ -20,7 +23,14 @@ namespace ToDoManager.ViewModels
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
-            MessagingCenter.Subscribe<NewItemViewModel, Item>(this, "AddItem", (obj, item) => Items.Add(item));
+            MessagingCenter.Subscribe<NewItemViewModel, Item>(this, "AddItem", async (obj, item) => await ExecuteLoadItemsCommand());
+            MessagingCenter.Subscribe<ItemsPage, Item>(this, "ItemTaskFinished", RemoveFinishedItem);
+        }
+
+        async void RemoveFinishedItem(ItemsPage obj, Item item)
+        {
+            await DataStore.DeleteItemAsync(item.Id);
+            Items.Remove(item);
         }
 
         async Task ExecuteLoadItemsCommand()
@@ -33,9 +43,19 @@ namespace ToDoManager.ViewModels
             try
             {
                 Items.Clear();
+                var categories = new List<Category>();
+                if (DataStore is DataBaseStore dataBaseStore)
+                {
+                    categories = await dataBaseStore.GetCateoriesAsync() as List<Category>;
+                }
                 var items = await DataStore.GetItemsAsync(true);
                 foreach (var item in items)
                 {
+                    var category = categories.Where<Category>(obj => obj.Name == item.Category).FirstOrDefault();
+                    if (category != null)
+                    {
+                        item.Category = category.Section + ": " + category.Name;
+                    }
                     Items.Add(item);
                 }
             }

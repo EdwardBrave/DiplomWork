@@ -27,15 +27,32 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout Padding="10">
-                            <Label Text="{Binding Label}" 
-                                LineBreakMode="NoWrap" 
-                                Style="{DynamicResource ListItemTextStyle}" 
-                                FontSize="16" />
-                            <Label Text="{Binding Category}" 
-                                LineBreakMode="NoWrap"
-                                Style="{DynamicResource ListItemDetailTextStyle}"
-                                FontSize="13" />
+                        <StackLayout Padding="10" Orientation="Horizontal">
+                            <Switch Toggled="OnItemTaskFinished" WidthRequest="50"></Switch>
+                            <StackLayout HorizontalOptions="FillAndExpand">
+                                <Label Text="{Binding Label}" 
+                                    LineBreakMode="NoWrap" 
+                                    Style="{DynamicResource ListItemTextStyle}" 
+                                    FontSize="16" />
+                                <Label Text="{Binding Category}" 
+                                    LineBreakMode="NoWrap"
+                                    Style="{DynamicResource ListItemDetailTextStyle}"
+                                    FontSize="14" />
+                            </StackLayout>
+                            <StackLayout HorizontalOptions="End" WidthRequest="50" BackgroundColor="#ffa726">
+                                <Label Text="Priority"  
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Start"
+                                    LineBreakMode="NoWrap" 
+                                    Style="{DynamicResource ListItemDetailTextStyle}" 
+                                    FontSize="13" />
+                                <Label Text="{Binding Priority}"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="FillAndExpand"
+                                    LineBreakMode="NoWrap"
+                                    Style="{DynamicResource ListItemTextStyle}"
+                                    FontSize="18" />
+                            </StackLayout>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

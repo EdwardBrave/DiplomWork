@@ -15,5 +15,6 @@ namespace ToDoManager.Models
         public string Category { get; set; }
         public byte Importance { get; set; }
         public byte Urgency { get; set; }
+        public float Priority { get; set; }
     }
 }

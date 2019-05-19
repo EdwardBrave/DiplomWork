@@ -82,7 +82,11 @@ namespace ToDoManager.Services
 
         public async Task<IEnumerable<Item>> GetItemsAsync(bool forceRefresh = false)
         {
-            return await dataBase.QueryAsync<Item>("select * from Tasks");
+            var items = await dataBase.QueryAsync<Item>("select * from Tasks");
+            var list = from obj in items
+                    orderby (obj.Priority = (obj.Importance + obj.Urgency) / 2F) descending
+                    select obj;
+            return list;
         }
 
         public async Task<IEnumerable<Category>> GetCateoriesAsync(bool forceRefresh = false)
