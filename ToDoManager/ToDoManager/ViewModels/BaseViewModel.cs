@@ -12,7 +12,7 @@ namespace ToDoManager.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>() ?? new MockDataStore();
+        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>() ?? new DataBaseStore();
 
         bool isBusy = false;
         public bool IsBusy
@@ -34,7 +34,7 @@ namespace ToDoManager.ViewModels
         {
             if (EqualityComparer<T>.Default.Equals(backingStore, value))
                 return false;
-
+            
             backingStore = value;
             onChanged?.Invoke();
             OnPropertyChanged(propertyName);

@@ -4,18 +4,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ToDoManager.Models;
+using Xamarin.Forms;
+using ToDoManager.Services;
 
+[assembly: Dependency(typeof(DataBaseStore))]
 namespace ToDoManager.Services
 {
-    public class MockDataStore : IDataStore<Item>
+    public class DataBaseStore : IDataStore<Item>
     {
-        List<Item> items;
-
         private SQLiteAsyncConnection dataBase;
 
-        public MockDataStore()
+        public DataBaseStore()
         {
-            items = new List<Item>();
             string dbPath = System.IO.Path.Combine(
                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                "ToDoData.db3");
@@ -47,7 +47,7 @@ namespace ToDoManager.Services
             }
         }
 
-        ~MockDataStore()
+        ~DataBaseStore()
         {
             if (dataBase != null)
                 dataBase.CloseAsync();
