@@ -1,4 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Locale lang="en">
   <lc_001>Hello</lc_001>
+  <lc_002>This app created by Edward Brave using C# and Xamarin.Forms Framework.</lc_002>
+  <lc_003>It`s portable project for UWP, Android and iOS platforms.</lc_003>
+  <lc_004>About author</lc_004>
+  <lc_005>About</lc_005>
 </Locale>
