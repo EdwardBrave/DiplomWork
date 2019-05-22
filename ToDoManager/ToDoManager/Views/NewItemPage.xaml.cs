@@ -21,6 +21,14 @@ namespace ToDoManager.Views
             BindingContext = this.viewModel = itemViewModel ?? new NewItemViewModel();
 
             MessagingCenter.Subscribe<NewItemViewModel, Category>(this, "RefreshCategory", RefreshCategory);
+            MessagingCenter.Subscribe<MenuViewModel>(this, "LangRefresh", Refresh);
+        }
+
+        private void Refresh(object sender)
+        {
+            var binding = BindingContext;
+            BindingContext = null;
+            BindingContext = binding;
         }
 
         void RefreshCategory(NewItemViewModel obj, Category category)

@@ -17,9 +17,12 @@ namespace ToDoManager.ViewModels
         public ObservableCollection<Item> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
 
+        public string lc_007 => Locale.Tr("lc_007");
+        public string lc_016 => Locale.Tr("lc_016");
+
         public ItemsViewModel()
         {
-            Title = "Browse";
+            Title = lc_007;
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 

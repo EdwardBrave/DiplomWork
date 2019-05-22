@@ -1,4 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Locale lang="de">
   <lc_001>Hallo</lc_001>
+  <lc_002>Diese App wurde von Edward Brave mit C # und Xamarin.Forms Framework erstellt.</lc_002>
+  <lc_003>Es ist ein portables Projekt für UWP-, Android- und iOS-Plattformen.</lc_003>
+  <lc_004>Über den Autor</lc_004>
+  <lc_005>Über</lc_005>
+  <lc_006>Language</lc_006>
+  <lc_007>Blättern</lc_007>
+  <lc_008>Menü</lc_008>
+  <lc_009>Aufgabe</lc_009>
+  <lc_010>Kategorie</lc_010>
+  <lc_011>Priorität:</lc_011>
+  <lc_012>Bedeutung:</lc_012>
+  <lc_013>Dringlichkeit:</lc_013>
+  <lc_014>Neue Aufgabe</lc_014>
+  <lc_015>Wählen Sie eine Kategorie</lc_015>
+  <lc_016>Hinzufügen</lc_016>
+  <lc_017>Sparen</lc_017>
+  <lc_018>Stornieren</lc_018>
+  <lc_019>Edieren</lc_019>
 </Locale>

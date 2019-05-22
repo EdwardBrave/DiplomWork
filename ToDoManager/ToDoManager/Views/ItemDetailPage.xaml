@@ -5,7 +5,7 @@
              Title="{Binding Title}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Edit" Clicked="EditClicked">
+        <ToolbarItem Text="{Binding lc_019}" Clicked="EditClicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="UWP" Value="add.png"/>
@@ -17,21 +17,21 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Spacing="5" Padding="15">
-                <Label Text="Task" FontSize="Micro" />
+                <Label Text="{Binding lc_009}" FontSize="Micro" />
                 <Label x:Name="Label" Text="{Binding Item.Label}" FontSize="Medium" />
-                <Label Text="Category" FontSize="Micro" />
+                <Label Text="{Binding lc_010}" FontSize="Micro" />
                 <Label x:Name="Category" Text="{Binding Item.Category}" FontSize="Small" />
                 <StackLayout Spacing="20" Padding="15" Orientation="Vertical">
                     <StackLayout Spacing="10" Orientation="Horizontal">
-                        <Label Text="Priority:" FontSize="Small" VerticalOptions="Center"/>
+                        <Label Text="{Binding lc_011}" FontSize="Small" VerticalOptions="Center"/>
                         <Label x:Name="Priority" Text="{Binding Item.Priority}" FontSize="Medium" />
                     </StackLayout>
                     <StackLayout Spacing="6" Orientation="Horizontal">
-                        <Label Text="Importance:" FontSize="Micro" />
+                        <Label Text="{Binding lc_012}" FontSize="Micro" />
                         <Label x:Name="Importance" Text="{Binding Item.Importance}" FontSize="Micro"></Label>
                     </StackLayout>
                     <StackLayout Spacing="6" Orientation="Horizontal">
-                        <Label Text="Urgency:" FontSize="Micro" />
+                        <Label Text="{Binding lc_013}" FontSize="Micro" />
                         <Label x:Name="Urgency" Text="{Binding Item.Urgency}" FontSize="Micro"></Label>
                     </StackLayout>
                 </StackLayout>

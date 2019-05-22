@@ -19,6 +19,14 @@ namespace ToDoManager.Views
 
             BindingContext = this.viewModel = viewModel;
             MessagingCenter.Subscribe<NewItemViewModel, Item>(this, "AddItem", RefreshPage);
+            MessagingCenter.Subscribe<MenuViewModel>(this, "LangRefresh", Refresh);
+        }
+
+        private void Refresh(object sender)
+        {
+            var binding = BindingContext;
+            BindingContext = null;
+            BindingContext = binding;
         }
 
         public ItemDetailPage()

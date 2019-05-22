@@ -22,6 +22,14 @@ namespace ToDoManager.Views
             InitializeComponent();
 
             BindingContext = viewModel = new ItemsViewModel();
+            MessagingCenter.Subscribe<MenuViewModel>(this, "LangRefresh", Refresh);
+        }
+
+        private void Refresh(object sender)
+        {
+            var binding = BindingContext;
+            BindingContext = null;
+            BindingContext = binding;
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)

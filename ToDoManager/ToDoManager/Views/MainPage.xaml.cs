@@ -18,6 +18,14 @@ namespace ToDoManager.Views
             MasterBehavior = MasterBehavior.Popover;
 
             MenuPages.Add((int)MenuItemType.Browse, (NavigationPage)Detail);
+            MessagingCenter.Subscribe<ViewModels.MenuViewModel>(this, "LangRefresh", Refresh);
+        }
+
+        private void Refresh(object sender)
+        {
+            var binding = BindingContext;
+            BindingContext = null;
+            BindingContext = binding;
         }
 
         public async Task NavigateFromMenu(int id)

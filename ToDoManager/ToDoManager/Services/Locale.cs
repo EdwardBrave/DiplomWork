@@ -11,7 +11,7 @@ namespace ToDoManager.Services
     public static class Locale
     {
         private static string lang = "en";
-        private static string embeddedFilePath = $"ToDoManager.Localization.langPack-{lang}.xml";
+        private static string embeddedFilePath = $"ToDoManager.Localization.langPack-#.xml";
 
         private static XmlDocument langData;
 
@@ -25,9 +25,20 @@ namespace ToDoManager.Services
                 }
                 langData = new XmlDocument();
                 var assembly = Assembly.GetExecutingAssembly();
-                Stream stream = assembly.GetManifestResourceStream(embeddedFilePath);
+                Stream stream = assembly.GetManifestResourceStream(embeddedFilePath.Replace("#", lang));
                 langData.Load(stream); 
                 return langData;
+            }
+        }
+
+        public static string Lang
+        {
+            get => lang;
+
+            set
+            {
+                lang = value;
+                langData = null;
             }
         }
 

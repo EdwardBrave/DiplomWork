@@ -22,6 +22,15 @@ namespace ToDoManager.ViewModels
 
         private bool isEditMode;
 
+        public string lc_009 => Locale.Tr("lc_009");
+        public string lc_010 => Locale.Tr("lc_010");
+        public string lc_012 => Locale.Tr("lc_012");
+        public string lc_013 => Locale.Tr("lc_013");
+        public string lc_014 => Locale.Tr("lc_014");
+        public string lc_015 => Locale.Tr("lc_015");
+        public string lc_017 => Locale.Tr("lc_017");
+        public string lc_018 => Locale.Tr("lc_018");
+
         public NewItemViewModel(Item currentItem = null)
         {
             Date = DateTime.Now;

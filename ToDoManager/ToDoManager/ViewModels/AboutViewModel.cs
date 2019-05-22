@@ -18,6 +18,7 @@ namespace ToDoManager.ViewModels
         public string lc_002 => Locale.Tr("lc_002");
         public string lc_003 => Locale.Tr("lc_003");
         public string lc_004 => Locale.Tr("lc_004");
+        public string lc_005 => Locale.Tr("lc_005");
 
         public ICommand OpenWebCommand { get; }
     }

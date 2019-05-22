@@ -2,17 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ToDoManager.Views.NewItemPage"
-             Title="New Item">
+             Title="{Binding lc_014}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Cancel" Clicked="Cancel_Clicked">
+        <ToolbarItem Text="{Binding lc_018}" Clicked="Cancel_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="UWP" Value="cancel.png"/>
                 </OnPlatform>
             </ToolbarItem.Icon>
         </ToolbarItem>
-        <ToolbarItem Text="Save" Clicked="Save_Clicked">
+        <ToolbarItem Text="{Binding lc_017}" Clicked="Save_Clicked">
             <ToolbarItem.Icon>
                 <OnPlatform x:TypeArguments="FileImageSource">
                     <On Platform="UWP" Value="save.png"/>
@@ -24,21 +24,21 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Spacing="20" Padding="15">
-                <Label Text="Task" FontSize="Small" />
+                <Label Text="{Binding lc_009}" FontSize="Small" />
                 <Entry Placeholder="Task information" Text="{Binding Item.Label}" FontSize="Small" />
-                <Label Text="Category" FontSize="Small" />
+                <Label Text="{Binding lc_010}" FontSize="Small" />
                 <Picker x:Name="categoryPicker"
-                        Title="Select a category"
+                        Title="{Binding lc_015}"
                         ItemsSource="{Binding Categories}" 
                         ItemDisplayBinding="{Binding Section}"
                         SelectedItem ="{Binding SelectedCategory}" 
                         FontSize="Small" Margin="0" />
-                <Label Text="Importance" FontSize="Small" />
+                <Label Text="{Binding lc_012}" FontSize="Small" />
                 <StackLayout Spacing="20" Orientation="Horizontal">
                     <Label x:Name="ImportanceLabel" Text="0" FontSize="Small" WidthRequest="40"></Label>
                     <Slider x:Name="ImportanceSlider" Value="{Binding Item.Importance}" ValueChanged="ImportanceSliderChanged" Minimum="0" Maximum="10" HorizontalOptions="FillAndExpand" />
                 </StackLayout>
-                <Label Text="Urgency" FontSize="Small" />
+                <Label Text="{Binding lc_013}" FontSize="Small" />
                 <StackLayout Spacing="20" Orientation="Horizontal">
                     <Label x:Name="UrgencyLabel" Text="0" FontSize="Small" WidthRequest="40"></Label>
                     <Slider x:Name="UrgencySlider" Value="{Binding Item.Urgency}" ValueChanged="UrgencySliderChanged" Minimum="0" Maximum="10" HorizontalOptions="FillAndExpand" />
