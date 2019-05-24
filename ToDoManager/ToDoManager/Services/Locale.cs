@@ -25,8 +25,8 @@ namespace ToDoManager.Services
                 }
                 langData = new XmlDocument();
                 var assembly = Assembly.GetExecutingAssembly();
-                Stream stream = assembly.GetManifestResourceStream(embeddedFilePath.Replace("#", lang));
-                langData.Load(stream); 
+                using (Stream stream = assembly.GetManifestResourceStream(embeddedFilePath.Replace("#", lang)))
+                    langData.Load(stream); 
                 return langData;
             }
         }

@@ -22,10 +22,9 @@ namespace ToDoManager.ViewModels
     }
 
 
-
     class MenuViewModel
     {
-        
+        private ISettings<string,string> Settings => DependencyService.Get<ISettings<string, string>>() ?? new SettingsData();
 
         public string lc_005 => Locale.Tr("lc_005");
         public string lc_006 => Locale.Tr("lc_006");
@@ -34,7 +33,7 @@ namespace ToDoManager.ViewModels
 
         public MenuViewModel()
         {
-            
+            Locale.Lang = Settings.GetValue(SettingsData.Language) ?? "en";
         }
 
         public void RefreshLanguage(string index)
@@ -42,6 +41,7 @@ namespace ToDoManager.ViewModels
             if(index != Locale.Lang)
             {
                 Locale.Lang = index;
+                Settings.SetValue(SettingsData.Language, index);
                 MessagingCenter.Send(this, "LangRefresh");
             }
         }
