@@ -22,7 +22,8 @@ namespace ToDoManager.Services
 
         public SettingsData()
         {
-            settings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(configPath));
+            if (File.Exists(configPath))
+                settings = JsonConvert.DeserializeObject<Dictionary<string, string>>(File.ReadAllText(configPath));
             if (settings == null)
             {
                 settings = new Dictionary<string, string>();
@@ -37,7 +38,14 @@ namespace ToDoManager.Services
         }
         public string GetValue(string key)
         {
-            return settings[key];
+            try
+            {
+                return settings[key];
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return null;
+            }
         }
 
         public void RemoveValue(string key)

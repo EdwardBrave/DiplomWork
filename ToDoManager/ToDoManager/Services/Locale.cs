@@ -11,7 +11,7 @@ namespace ToDoManager.Services
     public static class Locale
     {
         private static string lang = "en";
-        private static string embeddedFilePath = $"ToDoManager.Localization.langPack-#.xml";
+        private static string embeddedFilePath = "ToDoManager.Localization.langPack-#.xml";
 
         private static XmlDocument langData;
 
