@@ -19,7 +19,6 @@ namespace ToDoManager.Services
             string dbPath = System.IO.Path.Combine(
                Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),
                "ToDoData.db3");
-            string str = Locale.Tr("lc_001");
             dataBase = new SQLiteAsyncConnection(dbPath);
             dataBase.CreateTableAsync<Item>();
             RefreshCategory();

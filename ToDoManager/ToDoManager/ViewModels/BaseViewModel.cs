@@ -13,6 +13,7 @@ namespace ToDoManager.ViewModels
     public class BaseViewModel : INotifyPropertyChanged
     {
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>() ?? new DataBaseStore();
+        public IDataStore<ArchiveItem> ArchiveStore => DependencyService.Get<IDataStore<ArchiveItem>>() ?? new DataArchiveStore();
 
         bool isBusy = false;
         public bool IsBusy

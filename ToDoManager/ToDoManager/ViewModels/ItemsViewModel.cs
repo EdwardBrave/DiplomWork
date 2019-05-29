@@ -32,8 +32,11 @@ namespace ToDoManager.ViewModels
 
         async void RemoveFinishedItem(ItemsPage obj, Item item)
         {
+            var archiveItem = new ArchiveItem(await DataStore.GetItemAsync(item.Id));
             await DataStore.DeleteItemAsync(item.Id);
             Items.Remove(item);
+            archiveItem.Date = DateTime.Now.ToString();
+            await ArchiveStore.AddItemAsync(archiveItem);  
         }
 
         async Task ExecuteLoadItemsCommand()
