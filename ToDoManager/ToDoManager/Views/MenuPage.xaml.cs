@@ -27,6 +27,7 @@ namespace ToDoManager.Views
             menuItems = new List<HomeMenuItem>
             {
                 new HomeMenuItem {Id = MenuItemType.Browse, Title=viewModel.lc_007 },
+                new HomeMenuItem {Id = MenuItemType.Stats, Title=viewModel.lc_020 },
                 new HomeMenuItem {Id = MenuItemType.About, Title=viewModel.lc_005 }
             };
 
@@ -65,6 +66,7 @@ namespace ToDoManager.Views
             menuItems = new List<HomeMenuItem>
             {
                 new HomeMenuItem {Id = MenuItemType.Browse, Title=viewModel.lc_007 },
+                new HomeMenuItem {Id = MenuItemType.Stats, Title=viewModel.lc_020 },
                 new HomeMenuItem {Id = MenuItemType.About, Title=viewModel.lc_005 }
             };
 

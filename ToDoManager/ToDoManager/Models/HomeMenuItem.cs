@@ -7,6 +7,7 @@ namespace ToDoManager.Models
     public enum MenuItemType
     {
         Browse,
+        Stats,
         About
     }
     public class HomeMenuItem
