@@ -35,6 +35,7 @@ namespace ToDoManager.ViewModels
             var archiveItem = new ArchiveItem(await DataStore.GetItemAsync(item.Id));
             await DataStore.DeleteItemAsync(item.Id);
             Items.Remove(item);
+            archiveItem.Id = null;
             archiveItem.Date = DateTime.Now.ToString();
             await ArchiveStore.AddItemAsync(archiveItem);  
         }

@@ -14,11 +14,14 @@ namespace ToDoManager.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class StatsPage : ContentPage
 	{
-		public StatsPage()
+        private StatsViewModel viewModel;
+
+
+        public StatsPage()
 		{
 			InitializeComponent();
 
-            BindingContext = new StatsViewModel();
+            BindingContext = viewModel = new StatsViewModel();
             MessagingCenter.Subscribe<MenuViewModel>(this, "LangRefresh", Refresh);
         }
 
@@ -27,6 +30,13 @@ namespace ToDoManager.Views
             var binding = BindingContext;
             BindingContext = null;
             BindingContext = binding;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            
+            viewModel.LoadStatsCommand.Execute(null);
         }
     }
 }
