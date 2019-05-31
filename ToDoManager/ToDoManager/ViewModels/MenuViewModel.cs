@@ -31,6 +31,7 @@ namespace ToDoManager.ViewModels
         public string lc_007 => Locale.Tr("lc_007");
         public string lc_008 => Locale.Tr("lc_008");
         public string lc_020 => Locale.Tr("lc_020");
+        public string lc_021 => Locale.Tr("lc_021");
 
         public MenuViewModel()
         {

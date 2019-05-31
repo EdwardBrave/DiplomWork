@@ -8,6 +8,7 @@ namespace ToDoManager.Models
     {
         Browse,
         Stats,
+        Archive,
         About
     }
     public class HomeMenuItem
