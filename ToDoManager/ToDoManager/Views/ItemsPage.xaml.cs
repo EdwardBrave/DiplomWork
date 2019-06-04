@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-using ToDoManager.Models;
+using ToDoManager.Datas;
 using ToDoManager.ViewModels;
 
 namespace ToDoManager.Views

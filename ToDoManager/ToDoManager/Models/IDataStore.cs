@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ToDoManager.Services
+namespace ToDoManager.Models
 {
     public interface IDataStore<T>
     {

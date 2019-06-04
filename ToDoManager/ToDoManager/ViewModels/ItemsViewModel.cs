@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using System.Linq;
 using Xamarin.Forms;
 
-using ToDoManager.Models;
+using ToDoManager.Datas;
 using ToDoManager.Views;
 using System.Collections.Generic;
-using ToDoManager.Services;
+using ToDoManager.Models;
 
 namespace ToDoManager.ViewModels
 {

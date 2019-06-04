@@ -1,4 +1,4 @@
-﻿using ToDoManager.Models;
+﻿using ToDoManager.Datas;
 using System;
 using System.Linq;
 using System.Collections.Generic;
@@ -52,7 +52,7 @@ namespace ToDoManager.Views
             };
 
             language.ItemsSource = Languages;
-            language.SelectedItem = Languages.Where(item => item.Index == Services.Locale.Lang).FirstOrDefault();
+            language.SelectedItem = Languages.Where(item => item.Index == Models.Locale.Lang).FirstOrDefault();
             language.SelectedIndexChanged += OnSelectLanguage;
 
             MessagingCenter.Subscribe<MenuViewModel>(this, "LangRefresh", Refresh);

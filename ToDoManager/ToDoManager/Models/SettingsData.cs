@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using ToDoManager.Services;
+using ToDoManager.Models;
 using Xamarin.Forms;
 
 [assembly: Dependency(typeof(SettingsData))]
-namespace ToDoManager.Services
+namespace ToDoManager.Models
 {
 
     class SettingsData : ISettings<string, string>

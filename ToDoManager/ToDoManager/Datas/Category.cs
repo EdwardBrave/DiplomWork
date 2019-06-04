@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using SQLite;
 
-namespace ToDoManager.Models
+namespace ToDoManager.Datas
 {
     [Table("Categories")]
     public class Category

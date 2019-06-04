@@ -3,12 +3,12 @@ using SQLite;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ToDoManager.Models;
+using ToDoManager.Datas;
 using Xamarin.Forms;
-using ToDoManager.Services;
+using ToDoManager.Models;
 
 [assembly: Dependency(typeof(DataArchiveStore))]
-namespace ToDoManager.Services
+namespace ToDoManager.Models
 {
     public class DataArchiveStore : IDataStore<ArchiveItem>
     {

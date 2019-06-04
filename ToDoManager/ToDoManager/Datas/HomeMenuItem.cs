@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ToDoManager.Models
+namespace ToDoManager.Datas
 {
     public enum MenuItemType
     {

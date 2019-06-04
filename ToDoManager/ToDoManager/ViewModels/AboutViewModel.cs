@@ -2,7 +2,7 @@
 using System.Windows.Input;
 
 using Xamarin.Forms;
-using ToDoManager.Services;
+using ToDoManager.Models;
 
 namespace ToDoManager.ViewModels
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using SQLite;
 
-namespace ToDoManager.Models
+namespace ToDoManager.Datas
 {
     [Table("Tasks")]
     public class Item

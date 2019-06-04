@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ToDoManager.Services
+namespace ToDoManager.Models
 {
     interface ISettings<K, V>
     {

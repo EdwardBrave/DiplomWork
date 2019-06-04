@@ -3,19 +3,13 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-using ToDoManager.Services;
 using ToDoManager.Models;
+using ToDoManager.Datas;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace ToDoManager.ViewModels
 {
-    public class CategoryStats
-    {
-        public string Title { get; set; }
-        public string Section { get; set; }
-        public int Count { get; set; }
-    }
 
     class CategoryData
     {

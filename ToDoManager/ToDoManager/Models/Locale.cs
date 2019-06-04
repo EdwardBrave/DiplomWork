@@ -6,7 +6,7 @@ using System.Text;
 using System.Reflection;
 using Xamarin.Forms;
 
-namespace ToDoManager.Services
+namespace ToDoManager.Models
 {
     public static class Locale
     {
